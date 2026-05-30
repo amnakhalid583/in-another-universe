@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>In Another Timeline</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  overflow:hidden;
+}
+
+.room{
+  width:100vw;
+  height:100vh;
+
+  background:url("./room-bg.jpg");
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.03);
+}
+
+.content{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  text-align:center;
+}
+
+.intro{
+  margin-bottom:40px;
+  color:white;
+}
+
+.intro p:first-child{
+  font-size:20px;
+  font-weight:300;
+  margin-bottom:10px;
+  text-shadow:0 4px 20px rgba(0,0,0,0.25);
+}
+
+.intro p:last-child{
+  font-size:15px;
+  opacity:0.8;
+  text-shadow:0 4px 20px rgba(0,0,0,0.25);
+}
+
+.door{
+  width:220px;
+
+  cursor:pointer;
+
+  transition:0.35s ease;
+
+  filter:
+  drop-shadow(0 12px 25px rgba(0,0,0,0.18));
+}
+
+.door:hover{
+  transform:translateY(-5px);
+}
+
+.door.opening{
+  animation:openDoor 1.5s forwards;
+}
+
+@keyframes openDoor{
+
+  0%{
+    transform:scale(1);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1.15);
+    opacity:0;
+  }
+
+}
+
+.hint{
+  margin-top:22px;
+
+  color:white;
+  opacity:0.55;
+
+  font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="room">
+
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <div class="intro">
+      <p>Somewhere, there are timelines where things happened differently.</p>
+      <p>This is one of them.</p>
+    </div>
+
+    <img
+      src="./door.png"
+      class="door"
+      id="door"
+      alt="door"
+    >
+
+    <div class="hint">
+      enter
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const door = document.getElementById("door");
+
+door.addEventListener("click", () => {
+
+  door.classList.add("opening");
+
+  setTimeout(() => {
+
+    window.location.href = "./timeline1.html";
+
+  }, 1500);
+
+});
+
+</script>
+
+</body>
+</html>
