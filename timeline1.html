@@ -34,6 +34,34 @@ background-size:cover;
 background-position:center;
 
 position:relative;
+  <div class="fade-black" id="fadeBlack"></div>
+}
+
+  .intro{
+position:absolute;
+inset:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+color:white;
+
+font-size:28px;
+font-weight:300;
+
+background:rgba(0,0,0,.15);
+
+z-index:20;
+
+transition:1.5s;
+}
+
+.intro.hide{
+opacity:0;
+pointer-events:none;
 }
 
 /* title */
@@ -138,18 +166,11 @@ line-height:1.8;
 position:absolute;
 
 left:50%;
-bottom:90px;
+top:50%;
 
-transform:translateX(-50%);
+transform:translateX(-50%,-50%);
 
-display:flex;
-flex-direction:column;
-align-items:center;
-
-opacity:0;
-pointer-events:none;
-
-transition:1.2s;
+  z-index:100,
 }
 
 .next-door.show{
@@ -158,7 +179,7 @@ pointer-events:auto;
 }
 
 .next-door img{
-width:140px;
+width:110px;
 cursor:pointer;
 transition:.3s;
 }
@@ -174,6 +195,23 @@ color:white;
 opacity:.8;
 font-size:14px;
 }
+  .fade-black{
+position:absolute;
+inset:0;
+
+background:black;
+
+opacity:0;
+pointer-events:none;
+
+transition:2s;
+
+z-index:50;
+}
+
+.fade-black.show{
+opacity:1;
+}
 
 </style>
 </head>
@@ -181,10 +219,12 @@ font-size:14px;
 
 <div class="world">
 
-<div class="title">
-In Another Timeline
+<div class="intro" id="intro">
+  <p>
+    In another timeline,<br><br>
+    we lived ten minutes apart.
+  </p>
 </div>
-
 <!-- SCHOOL -->
 
 <div class="hotspot school" onclick="showMemory(0)"></div>
@@ -212,8 +252,6 @@ In Another Timeline
 <div class="next-door" id="nextDoor">
 
 <img src="./door2.png" onclick="goNext()">
-
-<p>there's another one.</p>
 
 </div>
 
@@ -266,23 +304,44 @@ setTimeout(()=>{
 
 memory.classList.remove("show");
 
-if(found.size === 3){
+},5000);
+
+}
+  if(found.size === 3){
+
+setTimeout(()=>{
+
+document
+.getElementById("fadeBlack")
+.classList.add("show");
+
+setTimeout(()=>{
 
 document
 .getElementById("nextDoor")
 .classList.add("show");
 
+},2500);
+
+},1000);
+
 }
-
-},5000);
-
-}
-
 function goNext(){
 
 window.location.href = "./timeline2.html";
 
 }
+  window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document
+.getElementById("intro")
+.classList.add("hide");
+
+},3500);
+
+});
 
 </script>
 
