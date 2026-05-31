@@ -44,15 +44,15 @@ body{
 }
 
 .content{
-  position:relative;
+  position:absolute;
+  top:90px;
+  left:50%;
+  transform:translateX(-50%);
+
   z-index:2;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
   text-align:center;
 }
+
 
 .intro{
   margin-bottom:40px;
@@ -73,7 +73,7 @@ body{
 }
 
 .door{
-  width:220px;
+  width:290px;
 
   cursor:pointer;
 
@@ -82,9 +82,20 @@ body{
   filter:
   drop-shadow(0 12px 25px rgba(0,0,0,0.18));
 }
-
 .door:hover{
   transform:translateY(-5px);
+  filter:
+    drop-shadow(0 0 20px rgba(255,255,255,0.25))
+    drop-shadow(0 12px 25px rgba(0,0,0,0.18));
+}
+  .door-wrapper{
+  position:absolute;
+
+  left:50%;
+  top:56%;
+
+  transform:translate(-50%,-50%);
+  z-index:2;
 }
 
 .door.opening{
@@ -123,28 +134,27 @@ body{
 
   <div class="overlay"></div>
 
-  <div class="content">
+<div class="content">
 
-    <div class="intro">
-      <p>Somewhere, there are timelines where things happened differently.</p>
-      <p>This is one of them.</p>
-    </div>
-
-    <img
-      src="./door.png"
-      class="door"
-      id="door"
-      alt="door"
-    >
-
-    <div class="hint">
-      enter
-    </div>
-
+  <div class="intro">
+    <p>Somewhere, there are timelines where things happened differently.</p>
+    <p>This is one of them.</p>
   </div>
 
 </div>
 
+<div class="door-wrapper">
+
+  <img
+    src="./door.png"
+    class="door"
+    id="door"
+    alt="door"
+  >
+
+    
+</div>
+    
 <script>
 
 const door = document.getElementById("door");
