@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>In Another Timeline</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:black;
+}
+
+.world{
+width:100vw;
+height:100vh;
+
+background:url("./timeline1-bg.jpg");
+background-size:cover;
+background-position:center;
+
+position:relative;
+}
+
+/* title */
+
+.title{
+position:absolute;
+top:40px;
+width:100%;
+
+text-align:center;
+
+color:white;
+font-size:26px;
+font-weight:300;
+
+text-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+/* hotspots */
+
+.hotspot{
+position:absolute;
+cursor:pointer;
+}
+
+/* school gate */
+
+.school{
+left:16%;
+top:43%;
+
+width:180px;
+height:220px;
+}
+
+/* bench */
+
+.bench{
+right:10%;
+bottom:6%;
+
+width:220px;
+height:150px;
+}
+
+/* claw machine */
+
+.claw{
+right:4%;
+top:28%;
+
+width:260px;
+height:320px;
+}
+
+/* memory popup */
+
+.memory{
+position:absolute;
+inset:0;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(10px);
+
+opacity:0;
+pointer-events:none;
+
+transition:.5s;
+}
+
+.memory.show{
+opacity:1;
+}
+
+.memory-box{
+
+max-width:520px;
+
+text-align:center;
+
+color:white;
+
+padding:40px;
+}
+
+.memory-box p{
+
+font-size:22px;
+font-weight:300;
+
+line-height:1.8;
+}
+
+/* next door */
+
+.next-door{
+
+position:absolute;
+
+left:50%;
+bottom:90px;
+
+transform:translateX(-50%);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+
+transition:1.2s;
+}
+
+.next-door.show{
+opacity:1;
+pointer-events:auto;
+}
+
+.next-door img{
+width:140px;
+cursor:pointer;
+transition:.3s;
+}
+
+.next-door img:hover{
+transform:translateY(-5px);
+}
+
+.next-door p{
+margin-top:12px;
+
+color:white;
+opacity:.8;
+font-size:14px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="world">
+
+<div class="title">
+In Another Timeline
+</div>
+
+<!-- SCHOOL -->
+
+<div class="hotspot school" onclick="showMemory(0)"></div>
+
+<!-- BENCH -->
+
+<div class="hotspot bench" onclick="showMemory(1)"></div>
+
+<!-- CLAW -->
+
+<div class="hotspot claw" onclick="showMemory(2)"></div>
+
+<!-- MEMORY -->
+
+<div class="memory" id="memory">
+
+<div class="memory-box">
+<p id="memoryText"></p>
+</div>
+
+</div>
+
+<!-- NEXT DOOR -->
+
+<div class="next-door" id="nextDoor">
+
+<img src="./door2.png" onclick="goNext()">
+
+<p>there's another one.</p>
+
+</div>
+
+</div>
+
+<script>
+
+const memoryTexts = [
+
+`We came here after school once.
+
+The teachers probably thought we went home.
+
+We didn't.`,
+
+`We sat here until the sky turned orange.
+
+Neither of us remembers what we talked about.
+
+We stayed anyway.`,
+
+`You spent fifteen minutes trying to win one plushie.
+
+You failed.
+
+So I won it for you instead.`
+
+];
+
+let found = new Set();
+
+function showMemory(index){
+
+const memory = document.getElementById("memory");
+const text = document.getElementById("memoryText");
+
+text.innerHTML = memoryTexts[index].replace(/\n/g,"<br><br>");
+
+memory.classList.add("show");
+
+found.add(index);
+
+setTimeout(()=>{
+
+memory.classList.remove("show");
+
+if(found.size === 3){
+
+document
+.getElementById("nextDoor")
+.classList.add("show");
+
+}
+
+},5000);
+
+}
+
+function goNext(){
+
+window.location.href = "./timeline2.html";
+
+}
+
+</script>
+
+</body>
+</html>
