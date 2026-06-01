@@ -128,7 +128,7 @@ padding:40px;
 .memory-box p{
 font-size:22px;
 font-weight:300;
-line-height:1.8;
+line-height:1.45;
 }
 
 .fade-black{
@@ -263,7 +263,7 @@ const memory = document.getElementById("memory");
 const text = document.getElementById("memoryText");
 
 text.innerHTML =
-memoryTexts[index].replace(/\n/g,"<br><br>");
+memoryTexts[index].replace(/\n/g,"<br>");
 
 memory.classList.add("show");
 
