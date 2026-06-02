@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Timeline 5</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:black;
+}
+
+.world{
+width:100vw;
+height:100vh;
+
+background:url("./timeline5-bg.jpg");
+background-size:cover;
+background-position:center;
+
+position:relative;
+
+transition:transform 8s ease;
+}
+
+.world.zoom-out{
+transform:scale(0.82);
+}
+
+/* Story Text */
+
+.story{
+
+position:absolute;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+padding:28px 40px;
+
+text-align:center;
+
+color:white;
+
+font-size:28px;
+font-weight:300;
+line-height:1.6;
+
+background:rgba(0,0,0,.12);
+backdrop-filter:blur(10px);
+
+border-radius:28px;
+
+opacity:0;
+
+transition:1.5s ease;
+
+max-width:700px;
+
+z-index:20;
+}
+
+.story.show{
+opacity:1;
+}
+
+.story.final{
+background:rgba(0,0,0,.08);
+backdrop-filter:blur(6px);
+}
+
+/* Notification */
+
+.notification{
+
+position:absolute;
+
+top:40px;
+left:50%;
+
+transform:translateX(-50%);
+
+padding:16px 22px;
+
+background:rgba(20,20,20,.55);
+backdrop-filter:blur(16px);
+
+border-radius:18px;
+
+color:white;
+
+font-size:14px;
+font-weight:300;
+
+opacity:0;
+
+transition:.6s;
+
+z-index:100;
+}
+
+.notification.show{
+opacity:1;
+}
+
+/* Fade */
+
+.fade{
+
+position:absolute;
+inset:0;
+
+background:black;
+
+opacity:0;
+
+transition:2s ease;
+
+z-index:200;
+}
+
+.fade.show{
+opacity:1;
+}
+
+</style>
+</head>
+<body>
+
+<div class="world" id="world">
+
+<div class="story" id="story"></div>
+
+<div class="notification" id="notification">
+exploration complete.
+</div>
+
+<div class="fade" id="fade"></div>
+
+</div>
+
+<script>
+
+const story =
+document.getElementById("story");
+
+const lines = [
+
+"I looked at all the timelines.",
+
+"The ones where we met sooner.",
+
+"The ones where we lived closer.",
+
+"The ones where things were easier.",
+
+"But this one gave me you.",
+
+"So I think I'll keep it."
+
+];
+
+function showLine(text,isFinal=false){
+
+story.classList.remove("show");
+story.classList.remove("final");
+
+setTimeout(()=>{
+
+story.innerHTML = text;
+
+if(isFinal){
+story.classList.add("final");
+}
+
+story.classList.add("show");
+
+},800);
+
+}
+
+/* Story */
+
+setTimeout(()=>{
+showLine(lines[0]);
+},1000);
+
+setTimeout(()=>{
+showLine(lines[1]);
+},6000);
+
+setTimeout(()=>{
+showLine(lines[2]);
+},11000);
+
+setTimeout(()=>{
+showLine(lines[3]);
+},16000);
+
+setTimeout(()=>{
+showLine(lines[4]);
+},22000);
+
+setTimeout(()=>{
+showLine(lines[5],true);
+},30000);
+
+/* Notification */
+
+setTimeout(()=>{
+
+document
+.getElementById("notification")
+.classList.add("show");
+
+},38000);
+
+/* Zoom out */
+
+setTimeout(()=>{
+
+document
+.getElementById("world")
+.classList.add("zoom-out");
+
+},43000);
+
+/* Fade */
+
+setTimeout(()=>{
+
+document
+.getElementById("fade")
+.classList.add("show");
+
+},51000);
+
+/* Back to desktop */
+
+setTimeout(()=>{
+
+window.location.href =
+"./desktop.html";
+
+},53000);
+
+</script>
+
+</body>
+</html>
